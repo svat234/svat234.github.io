@@ -48,6 +48,7 @@
     }
     if (this.hit_paddle() == true){
     	this.y = -3
+	score++;
     }
     if (this.pos[0] <= 0){
     	this.x = 3
@@ -92,7 +93,7 @@ var canvas = document.getElementById('tutorial');
 var ctx = canvas.getContext('2d');
 var paddle = new Paddle(ctx);
 var ball = new Ball(ctx, paddle);
-ctx.font = "48px serif";
+var score = 0;
 document.addEventListener('keydown', move);
 window.main = function () {
   window.requestAnimationFrame( main );
@@ -103,8 +104,12 @@ window.main = function () {
   if (ball.hit_bottom !== true){
     ball.draw();
     paddle.draw()
+    ctx.font = "48px serif";
+    ctx.fillStyle = "rgb(0, 0, 0)";
+    ctx.fillText(String(score), 10, 10);
   }
   else{
+        ctx.font = "12px serif";
   	ctx.fillStyle = "rgb(0, 0, 0)";
   	ctx.fillText("You Lose!", 50, 100);
   }

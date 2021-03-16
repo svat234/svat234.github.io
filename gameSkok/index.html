@@ -104,14 +104,14 @@ window.main = function () {
   if (ball.hit_bottom !== true){
     ball.draw();
     paddle.draw()
-    ctx.font = "48px serif";
+    ctx.font = "12px serif";
     ctx.fillStyle = "rgb(0, 0, 0)";
     ctx.fillText(String(score), 10, 10);
   }
   else{
-        ctx.font = "12px serif";
+        ctx.font = "48px serif";
   	ctx.fillStyle = "rgb(0, 0, 0)";
-  	ctx.fillText("You Lose!", 50, 100);
+  	ctx.fillText("You Lose!", 100, 200);
   }
 };
 main();

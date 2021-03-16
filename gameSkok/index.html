@@ -1,0 +1,115 @@
+<html>
+  <head>
+    <title>Гра Скок</title>
+    <meta charset="utf-8">
+    <style>
+      #tutorial{
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="tutorial" width="500" height="400"></canvas>
+    <script>
+      class Ball{
+	constructor(canvas, paddle){
+  	this.canvas = canvas;
+    this.paddle = paddle;
+    this.pos = [255, 110, 280, 135];
+ 		this.x = 1;
+    this.y = -3;
+    this.height = 400;
+    this.width = 500;
+    this.hit_bottom = false;
+  } 
+  hit_paddle(){
+		var paddle_pos = this.paddle.pos;
+    if (this.pos[2] >= paddle_pos[0] && this.pos[0] <= paddle_pos[2]){
+    	if (this.pos[3] >= paddle_pos[1] && this.pos[3] <= paddle_pos[3]){
+      	return true;
+      }
+    }
+    return false;
+	}
+  draw(){
+  	this.pos[0] += this.x;
+    this.pos[2] += this.x;
+    this.pos[1] += this.y;
+    this.pos[3] += this.y;
+    this.canvas.fillStyle = 'rgb(255, 0, 0)';
+    var circle = new Path2D();
+    circle.arc(this.pos[0], this.pos[1], 25, 0, 2 * Math.PI);
+    this.canvas.fill(circle);
+    if (this.pos[1] <= 0){
+    	this.y = 3
+    }
+    if (this.pos[3] >= this.height){
+    	this.hit_bottom = true;
+    }
+    if (this.hit_paddle() == true){
+    	this.y = -3
+    }
+    if (this.pos[0] <= 0){
+    	this.x = 3
+    }
+    if (this.pos[2] >= this.width){
+    	this.x = -3
+    }
+  }
+}
+class Paddle{
+	constructor(canvas){
+  	this.canvas = canvas;
+    this.pos = [200, 300, 300, 310];
+    this.x = 0;
+    this.width = 500;
+  }
+  draw(){
+  	this.pos[0] += this.x;
+    this.pos[2] += this.x;
+    this.canvas.fillStyle = 'rgb(0, 0, 255)';
+    var rectangle = new Path2D();
+    rectangle.rect(this.pos[0], this.pos[1], this.pos[2]-this.pos[0], this.pos[3]-this.pos[1]);
+    this.canvas.fill(rectangle);
+    if (this.pos[0] <= 0){
+    	this.x = 0
+    }
+    if (this.pos[2] >= this.width){
+    	this.x = 0
+    }
+  }
+}
+function move(event){
+  	if (event.code == "KeyD"){
+    	paddle.x = 2;
+    }
+    if (event.code == "KeyA"){
+			paddle.x = -2;
+    }
+  }
+
+var canvas = document.getElementById('tutorial');
+var ctx = canvas.getContext('2d');
+var paddle = new Paddle(ctx);
+var ball = new Ball(ctx, paddle);
+ctx.font = "48px serif";
+document.addEventListener('keydown', move);
+window.main = function () {
+  window.requestAnimationFrame( main );
+	ctx.fillStyle = "rgb(255, 255, 255)";
+  rect = new Path2D();
+  rect.rect(0, 0, 500, 400)
+  ctx.fill(rect);
+  if (ball.hit_bottom !== true){
+    ball.draw();
+    paddle.draw()
+  }
+  else{
+  	ctx.fillStyle = "rgb(0, 0, 0)";
+  	ctx.fillText("You Lose!", 50, 100);
+  }
+};
+main();
+    </script>
+  </body>
+</html>

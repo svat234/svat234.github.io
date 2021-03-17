@@ -9,7 +9,8 @@
     </style>
   </head>
   <body>
-    <canvas id="tutorial" width="500" height="400"></canvas>
+	<canvas id="tutorial" width="500" height="400"><button onclick="startGame(this)">Розпочати</button></canvas>
+	  <div style="display:flex;"><button>Вліво</button><button>Вправо</button></div>
     <script>
       class Ball{
 	constructor(canvas, paddle){
@@ -88,11 +89,16 @@ function move(event){
 			paddle.x = -2;
     }
   }
-
+function startGame(bt){
+	start = true;
+	bt.width = "0px"
+	bt.height = "0px"
+}
 var canvas = document.getElementById('tutorial');
 var ctx = canvas.getContext('2d');
 var paddle = new Paddle(ctx);
 var ball = new Ball(ctx, paddle);
+var start = false;
 var score = 0;
 document.addEventListener('keydown', move);
 window.main = function () {
@@ -101,14 +107,14 @@ window.main = function () {
   rect = new Path2D();
   rect.rect(0, 0, 500, 400)
   ctx.fill(rect);
-  if (ball.hit_bottom !== true){
+  if (ball.hit_bottom !== true and start = true){
     ball.draw();
     paddle.draw()
     ctx.font = "12px serif";
     ctx.fillStyle = "rgb(0, 0, 0)";
     ctx.fillText(String(score), 10, 10);
   }
-  else{
+  elif (start == true){
         ctx.font = "36px serif";
   	ctx.fillStyle = "rgb(0, 0, 0)";
   	ctx.fillText("Ти програв! Та набрав "+score+" очок", 20, 200);

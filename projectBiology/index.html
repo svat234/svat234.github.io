@@ -6,13 +6,17 @@
         <script src="js.js"></script>
     </head>
     <body>
-        <div class='base'>
-            <div class="content">
-                <div class="page" id='page_1'>
+        <div id='base' style="transform: rotateY(0deg);">
+            <div id="content">
+                <div class="page active" id='page_1'>
                     <p>Так?</p>
-                    <p><input type="radio" name="page_1" id='page_1_input_1'><label for='page_1_input_1'>Так</label></p>
-                    <p><input type="radio" name="page_1" id='page_1_input_2'><label for='page_1_input_2'>Ні</label></p>
-                    <p><input type="radio" name="page_1" id='page_1_input_3'><label for='page_1_input_3'>...</label></p>
+                    <p><input type="radio" name="page_1" id='page_1_input_1' onchange="ActivateButton('page_1_submit_button')"><label for='page_1_input_1'>Так</label></p>
+                    <p><input type="radio" name="page_1" id='page_1_input_2' onchange="ActivateButton('page_1_submit_button')"><label for='page_1_input_2'>Ні</label></p>
+                    <p><input type="radio" name="page_1" id='page_1_input_3' onchange="ActivateButton('page_1_submit_button')"><label for='page_1_input_3'>...</label></p>
+                    <p><label class="button disabled" id="page_1_submit_button" onclick="if (this.className != 'button disabled'){ChangePage('page_1_1')}">Next</label></p>
+                </div>
+                <div class="page" id="page_1_1">
+                    <p>BEBRA</p>
                 </div>
             </div>
             <div class='page-counter'>

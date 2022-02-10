@@ -10,6 +10,8 @@ html{
     --button-background-color: var(--background-color);
     --button-color-hover: var(--button-background-color);
     --button-background-color-hover: var(--button-color);
+    --correct-answer: rgb(100, 200, 100);
+    --incorrect-answer: rgb(200, 50, 50);
 }
 @font-face {
     font-family: AdverGothic; /* Гарнитура шрифта */
@@ -25,15 +27,17 @@ body{
     align-items: center;
 
     font-family: AdverGothic;
-    font-size: 150%;
+    font-size: 200%;
 }   
 p{
-    margin-top: 0.4em;
-    margin-bottom: 0.4em;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
     margin-left: 0px;
     margin-right: 0px;
 }
 label.button{
+    align-self: flex-end;
+
     transition: 0.5s;
     margin: 0px;
 
@@ -77,9 +81,12 @@ label.button:not(.disabled):hover{
 }
 .page{
     display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90%;
 }
 .page.active{
-    display: block;
+    display: flex;
 }
 .page.addictive{
     transform: rotateY(-180deg);

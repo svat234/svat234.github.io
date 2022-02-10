@@ -21,3 +21,14 @@ function PageCounterUpdate(){
 function ActivateButton(buttonId){
     document.getElementById(buttonId).classList.remove('disabled');
 }
+function ChangeAnswer(pageId,correct){
+    var element = document.getElementById(pageId+'_answer')
+    if (correct==true){
+        element.innerHTML = 'Чудово! Правильна відповідь';
+        element.style.color = 'var(--correct-answer)'
+    }
+    else{
+        element.innerHTML = 'Неравильна відповідь';
+        element.style.color = 'var(--incorrect-answer)'
+    }
+}

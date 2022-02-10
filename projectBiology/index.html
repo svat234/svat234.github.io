@@ -9,25 +9,59 @@
         <div id='base' style="transform: rotateY(0deg);">
             <div id="content">
                 <div class="page active" id='page_1'>
-                    <p>Так?</p>
-                    <p><input type="radio" name="page_1" id='page_1_input_1' onchange="ActivateButton('page_1_submit_button')"><label for='page_1_input_1'>Так</label></p>
-                    <p><input type="radio" name="page_1" id='page_1_input_2' onchange="ActivateButton('page_1_submit_button')"><label for='page_1_input_2'>Ні</label></p>
-                    <p><input type="radio" name="page_1" id='page_1_input_3' onchange="ActivateButton('page_1_submit_button')"><label for='page_1_input_3'>...</label></p>
-                    <p><label class="button disabled" id="page_1_submit_button" onclick="if (this.className != 'button disabled'){ChangePage('page_1_1')}">Next</label></p>
+                    <div><p>Чи правда що люди з блакитним кольором очей - родичі?</p>
+                    <p><input type="radio" name="page_1" id='page_1_input_1' onchange="ActivateButton('page_1_submit_button');ChangeAnswer('page_1_1', true)"><label for='page_1_input_1'>Так</label></p>
+                    <p><input type="radio" name="page_1" id='page_1_input_2' onchange="ActivateButton('page_1_submit_button');ChangeAnswer('page_1_1', false)"><label for='page_1_input_2'>Ні</label></p></div>
+                    <p style="align-self: center;"><label class="button disabled" id="page_1_submit_button" onclick="if (this.className != 'button disabled'){ChangePage('page_1_1')}">Далі</label></p>
                 </div>
                 <div class="page addictive" id="page_1_1">
-                    <p>BEBRA</p>
-                    <p><label class="button" id="page_1_1_submit_button" onclick="ChangePage('page_2');setTimeout(PageCounterUpdate, 250)">Next</label></p>
+                    <div>
+                        <p id="page_1_1_answer"></p>
+                        <p>Всі люди з блакитним кольором очей – дуже далекі родичі. Такий колір очей виходить в результаті мутації гена HERC2. Виникла така мутація приблизно 6-10 тисяч років тому на Близькому Сході.</p>
+                    </div>
+                    <p style="align-self: center;"><label class="button" id="page_1_1_submit_button" onclick="ChangePage('page_2');setTimeout(PageCounterUpdate, 250)">Далі</label></p>
                 </div>
                 <div class="page" id="page_2">
-                    <p>Ні?</p>
-                    <p><input type="radio" name="page_2" id='page_2_input_1' onchange="ActivateButton('page_2_submit_button')"><label for='page_2_input_1'>Так</label></p>
-                    <p><input type="radio" name="page_2" id='page_2_input_2' onchange="ActivateButton('page_2_submit_button')"><label for='page_2_input_2'>Ні</label></p>
-                    <p><input type="radio" name="page_2" id='page_2_input_3' onchange="ActivateButton('page_2_submit_button')"><label for='page_2_input_3'>...</label></p>
-                    <p><label class="button disabled" id="page_2_submit_button" onclick="if (this.className != 'button disabled'){ChangePage('page_2_1')}">Next</label></p>
+                    <div><p>Чи бувають блакитні лобстери?</p>
+                    <p><input type="radio" name="page_2" id='page_2_input_1' onchange="ActivateButton('page_2_submit_button');ChangeAnswer('page_2_1', true)"><label for='page_2_input_1'>Так</label></p>
+                    <p><input type="radio" name="page_2" id='page_2_input_2' onchange="ActivateButton('page_2_submit_button');ChangeAnswer('page_2_1', false)"><label for='page_2_input_2'>Ні</label></p></div>
+                    <p style="align-self: center;"><label class="button disabled" id="page_2_submit_button" onclick="if (this.className != 'button disabled'){ChangePage('page_2_1')}">Далі</label></p>
                 </div>
                 <div class="page addictive" id="page_2_1">
-                    <p>BEBRA</p>
+                    <div style="display: flex;flex-direction: column;">
+                        <p id="page_2_1_answer"></p>
+                        <p>Близько 1 із 4.000.000 лобстерів народжується з рідкісною мутацією, яка фарбує їх у блакитний колір</p>
+                        <img src="img/blue-lobster.jpg" width="40%" style="align-self: center;">
+                    </div>
+                    <p style="align-self: center;"><label class="button" id="page_2_1_submit_button" onclick="ChangePage('page_3');setTimeout(PageCounterUpdate, 250)">Далі</label></p>
+                </div>
+                <div class="page" id="page_3">
+                    <div><p>Чи існують люди з зеленим кольором шкіри?</p>
+                    <p><input type="radio" name="page_3" id='page_3_input_1' onchange="ActivateButton('page_3_submit_button');ChangeAnswer('page_3_1', false)"><label for='page_3_input_1'>Так</label></p>
+                    <p><input type="radio" name="page_3" id='page_3_input_2' onchange="ActivateButton('page_3_submit_button');ChangeAnswer('page_3_1', true)"><label for='page_3_input_2'>Ні</label></p></div>
+                    <p style="align-self: center;"><label class="button disabled" id="page_3_submit_button" onclick="if (this.className != 'button disabled'){ChangePage('page_3_1')}">Далі</label></p>
+                </div>
+                <div class="page addictive" id="page_3_1">
+                    <div style="display: flex;flex-direction: column;">
+                        <p id="page_3_1_answer"></p>
+                        <p>Людей з зеленим кольором шкіри не існує. Проте у США існувала сім'я "Синіх фугатів" Кентуккі члени якої мали синій колір шкіри. Вони малу шкіру такого кольору через рідкісний розлад крові під назвою Метгемоглобінемія. Це стан, при якому в крові міститься надмірна кількість Метгемоглобіну - гемоглобіну, який не може транспортувати або розподіляти кисень. Зовнішнім симптомом цієї хвороби є синій колір шкіри. </p>
+                        <img src="img/blue-people.jpg" width="40%" style="align-self: center;">
+                    </div>
+                    <p style="align-self: center;"><label class="button" id="page_3_1_submit_button" onclick="ChangePage('page_4');setTimeout(PageCounterUpdate, 250)">Далі</label></p>
+                </div>
+                <div class="page" id="page_4">
+                    <div><p>Чи правда що у всіх метеликів праве крило має той самий малюнок що й праве?</p>
+                    <p><input type="radio" name="page_4" id='page_4_input_1' onchange="ActivateButton('page_4_submit_button');ChangeAnswer('page_4_1', false)"><label for='page_4_input_1'>Так</label></p>
+                    <p><input type="radio" name="page_4" id='page_4_input_2' onchange="ActivateButton('page_4_submit_button');ChangeAnswer('page_4_1', true)"><label for='page_4_input_2'>Ні</label></p></div>
+                    <p style="align-self: center;"><label class="button disabled" id="page_4_submit_button" onclick="if (this.className != 'button disabled'){ChangePage('page_4_1')}">Далі</label></p>
+                </div>
+                <div class="page addictive" id="page_4_1">
+                    <div style="display: flex;flex-direction: column;">
+                        <p id="page_4_1_answer"></p>
+                        <p>Метелики з двома абсолютно різними малюнками на крилах - гермофродити. Одне крило має малюнок - чоловічої статі, а інше - жіночої</p>
+                        <img src="img/butterfly.jpg" width="40%" style="align-self: center;">
+                    </div>
+                    <p style="align-self: center;"><label class="button" id="page_4_1_submit_button" onclick="ChangePage('page_5');setTimeout(PageCounterUpdate, 250)">Далі</label></p>
                 </div>
             </div>
             <div id='page-counter'>
@@ -35,8 +69,6 @@
                 <div id="page-counter-element-2"></div>
                 <div id="page-counter-element-3"></div>
                 <div id="page-counter-element-4"></div>
-                <div id="page-counter-element-5"></div>
             </div>
-        </div>
     </body>
 </html>

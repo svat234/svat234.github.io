@@ -32,3 +32,16 @@ function ChangeAnswer(pageId,correct){
         element.style.color = 'var(--incorrect-answer)'
     }
 }
+function Calculate(){
+    var element = document.getElementById('test_result');
+    var score = Number(document.getElementById('page_1_input_1').checked);
+    var score = score + Number(document.getElementById('page_2_input_1').checked);
+    var score = score + Number(document.getElementById('page_3_input_2').checked);
+    var score = score + Number(document.getElementById('page_4_input_2').checked);
+    var score = score + Number(document.getElementById('page_5_input_1').checked);
+    var score = score + Number(document.getElementById('page_6_input_1').checked);
+    var score = score + Number(document.getElementById('page_7_input_2').checked);
+    var score = score + Number(document.getElementById('page_8_input_1').checked);
+    var score = score + Number(document.getElementById('page_9_input_1').checked);
+    element.innerHTML = 'Вітаю! Ви відповіли на '+String(score)+' з 9 питань вірно.'
+}

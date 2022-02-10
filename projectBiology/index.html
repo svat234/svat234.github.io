@@ -6,9 +6,20 @@
         <script src="js.js"></script>
     </head>
     <body>
-        <div id='base' style="transform: rotateY(0deg);">
+        <div id='base' style="transform: rotateY(-180deg);">
             <div id="content">
-                <div class="page active" id='page_1'>
+                <!--PAGE_0-->
+                <div class="page active" id='page_0' style="transform: rotateY(180deg);">
+                    <div>
+                        <p>Вікторина на тему "Кольори в геномі організмів"</p>
+                        <p>Після натискання кнопки Продовжити Вам буде задані 9 запитаннь з варіантами відповіді "Так" чи "Ні". На кожне запитання у Вас є необмежена кількість часу. Доти ви не натисните кнопку "Далі" Ви можете міняти свій варіант відповіді. Після кожного запитання Вам буде слайд з поясненням щодо нього. Вкінці вікторини Вам покажуть Ваші результати</p>
+                    </div>
+                    <p style="align-self: center;"><label class="button" id="page_0_submit_button" onclick="if (this.className != 'button disabled'){ChangePage('page_1');setTimeout(PageCounterUpdate, 250)}">Розпочати</label></p>
+                </div>
+                <!--PAGE_0-->
+                
+                <!--PAGE_1-->
+                <div class="page" id='page_1'>
                     <div><p>Чи правда що люди з блакитним кольором очей - родичі?</p>
                     <p><input type="radio" name="page_1" id='page_1_input_1' onchange="ActivateButton('page_1_submit_button');ChangeAnswer('page_1_1', true)"><label for='page_1_input_1'>Так</label></p>
                     <p><input type="radio" name="page_1" id='page_1_input_2' onchange="ActivateButton('page_1_submit_button');ChangeAnswer('page_1_1', false)"><label for='page_1_input_2'>Ні</label></p></div>
@@ -21,6 +32,9 @@
                     </div>
                     <p style="align-self: center;"><label class="button" id="page_1_1_submit_button" onclick="ChangePage('page_2');setTimeout(PageCounterUpdate, 250)">Далі</label></p>
                 </div>
+                <!--PAGE_1-->
+
+                <!--PAGE_2-->
                 <div class="page" id="page_2">
                     <div><p>Чи бувають блакитні лобстери?</p>
                     <p><input type="radio" name="page_2" id='page_2_input_1' onchange="ActivateButton('page_2_submit_button');ChangeAnswer('page_2_1', true)"><label for='page_2_input_1'>Так</label></p>
@@ -35,6 +49,9 @@
                     </div>
                     <p style="align-self: center;"><label class="button" id="page_2_1_submit_button" onclick="ChangePage('page_3');setTimeout(PageCounterUpdate, 250)">Далі</label></p>
                 </div>
+                <!--PAGE_2-->
+
+                <!--PAGE_3-->
                 <div class="page" id="page_3">
                     <div><p>Чи існують люди з зеленим кольором шкіри?</p>
                     <p><input type="radio" name="page_3" id='page_3_input_1' onchange="ActivateButton('page_3_submit_button');ChangeAnswer('page_3_1', false)"><label for='page_3_input_1'>Так</label></p>
@@ -49,6 +66,9 @@
                     </div>
                     <p style="align-self: center;"><label class="button" id="page_3_1_submit_button" onclick="ChangePage('page_4');setTimeout(PageCounterUpdate, 250)">Далі</label></p>
                 </div>
+                <!--PAGE_3-->
+
+                <!--PAGE_4-->
                 <div class="page" id="page_4">
                     <div><p>Чи правда що у всіх метеликів праве крило має той самий малюнок що й праве?</p>
                     <p><input type="radio" name="page_4" id='page_4_input_1' onchange="ActivateButton('page_4_submit_button');ChangeAnswer('page_4_1', false)"><label for='page_4_input_1'>Так</label></p>
@@ -63,12 +83,109 @@
                     </div>
                     <p style="align-self: center;"><label class="button" id="page_4_1_submit_button" onclick="ChangePage('page_5');setTimeout(PageCounterUpdate, 250)">Далі</label></p>
                 </div>
+                <!--PAGE_4-->
+
+                <!--PAGE_5-->
+                <div class="page" id="page_5">
+                    <div><p>Чи правда що більшість генів які відповідають за колір очей беруть участь в утворенні меланіну?</p>
+                    <p><input type="radio" name="page_5" id='page_5_input_1' onchange="ActivateButton('page_5_submit_button');ChangeAnswer('page_5_1', true)"><label for='page_5_input_1'>Так</label></p>
+                    <p><input type="radio" name="page_5" id='page_5_input_2' onchange="ActivateButton('page_5_submit_button');ChangeAnswer('page_5_1', false)"><label for='page_5_input_2'>Ні</label></p></div>
+                    <p style="align-self: center;"><label class="button disabled" id="page_5_submit_button" onclick="if (this.className != 'button disabled'){ChangePage('page_5_1')}">Далі</label></p>
+                </div>
+                <div class="page addictive" id="page_5_1">
+                    <div style="display: flex;flex-direction: column;">
+                        <p id="page_5_1_answer"></p>
+                        <p>Більшість генів, пов'язаних з кольором райдужної оболонки, беруть участь в утворенні, транспорті та зберіганні меланіну, тому що саме від меланіну залежить колір райдужної оболонки</p>
+                    </div>
+                    <p style="align-self: center;"><label class="button" id="page_5_1_submit_button" onclick="ChangePage('page_6');setTimeout(PageCounterUpdate, 250)">Далі</label></p>
+                </div>
+                <!--PAGE_5-->
+
+                <!--PAGE_6-->
+                <div class="page" id="page_6">
+                    <div><p>Чи правда що в холодних та гарячих країнах преважають люди з карими очима?</p>
+                    <p><input type="radio" name="page_6" id='page_6_input_1' onchange="ActivateButton('page_6_submit_button');ChangeAnswer('page_6_1', true)"><label for='page_6_input_1'>Так</label></p>
+                    <p><input type="radio" name="page_6" id='page_6_input_2' onchange="ActivateButton('page_6_submit_button');ChangeAnswer('page_6_1', false)"><label for='page_6_input_2'>Ні</label></p></div>
+                    <p style="align-self: center;"><label class="button disabled" id="page_6_submit_button" onclick="if (this.className != 'button disabled'){ChangePage('page_6_1')}">Далі</label></p>
+                </div>
+                <div class="page addictive" id="page_6_1">
+                    <div style="display: flex;flex-direction: column;">
+                        <p id="page_6_1_answer"></p>
+                        <p>У найспекотніших країнах та найхолодніших країнах більшість людей з карии очима. Це пояснюється потребою захиститися від сонячних променів, у тому числі від променів відбитих від сніжного покриву.</p>
+                    </div>
+                    <p style="align-self: center;"><label class="button" id="page_6_1_submit_button" onclick="ChangePage('page_7');setTimeout(PageCounterUpdate, 250)">Далі</label></p>
+                </div>
+                <!--PAGE_6-->
+
+                <!--PAGE_7-->
+                <div class="page" id="page_7">
+                    <div><p>Чи правда що у первіснх людей переважав світлий колір шкіри?</p>
+                    <p><input type="radio" name="page_7" id='page_7_input_1' onchange="ActivateButton('page_7_submit_button');ChangeAnswer('page_7_1', false)"><label for='page_7_input_1'>Так</label></p>
+                    <p><input type="radio" name="page_7" id='page_7_input_2' onchange="ActivateButton('page_7_submit_button');ChangeAnswer('page_7_1', true)"><label for='page_7_input_2'>Ні</label></p></div>
+                    <p style="align-self: center;"><label class="button disabled" id="page_7_submit_button" onclick="if (this.className != 'button disabled'){ChangePage('page_7_1')}">Далі</label></p>
+                </div>
+                <div class="page addictive" id="page_7_1">
+                    <div style="display: flex;flex-direction: column;">
+                        <p id="page_7_1_answer"></p>
+                        <p>Давні предки сучасної людини жили, в більшості своїй, на території африканського континенту. Їм доводилося захищатися від руйнівної дії УФ-променів, тому у перших людей переважала темніша шкіра і темніші очі</p>
+                    </div>
+                    <p style="align-self: center;"><label class="button" id="page_7_1_submit_button" onclick="ChangePage('page_8');setTimeout(PageCounterUpdate, 250)">Далі</label></p>
+                </div>
+                <!--PAGE_7-->
+                
+                <!--PAGE_8-->
+                <div class="page" id="page_8">
+                    <div><p>Чи правда що при Альбінізмі людина має дуже світлу шкіру і волосся та червоні очі?</p>
+                    <p><input type="radio" name="page_8" id='page_8_input_1' onchange="ActivateButton('page_8_submit_button');ChangeAnswer('page_8_1', true)"><label for='page_8_input_1'>Так</label></p>
+                    <p><input type="radio" name="page_8" id='page_8_input_2' onchange="ActivateButton('page_8_submit_button');ChangeAnswer('page_8_1', false)"><label for='page_8_input_2'>Ні</label></p></div>
+                    <p style="align-self: center;"><label class="button disabled" id="page_8_submit_button" onclick="if (this.className != 'button disabled'){ChangePage('page_8_1')}">Далі</label></p>
+                </div>
+                <div class="page addictive" id="page_8_1">
+                    <div style="display: flex;flex-direction: column;">
+                        <p id="page_8_1_answer"></p>
+                        <p>При Альбінізмі людина має дуже світлу шкіру і волосся та червоні очі. Це відбувається через те що через Альбінізм організм перестає виробляти меланін, який фарбує волосся, шкіру. Рогівка ока - стає прозорою, а червоними є кров'яні сосуди, що знаходяться за нею.</p>
+                    </div>
+                    <p style="align-self: center;"><label class="button" id="page_8_1_submit_button" onclick="ChangePage('page_9');setTimeout(PageCounterUpdate, 250)">Далі</label></p>
+                </div>
+                <!--PAGE_8-->
+                
+                <!--PAGE_9-->
+                <div class="page" id="page_9">
+                    <div><p>Чи правда, що колір волосся майже повністю залежить від генетики</p>
+                    <p><input type="radio" name="page_9" id='page_9_input_1' onchange="ActivateButton('page_9_submit_button');ChangeAnswer('page_9_1', true)"><label for='page_9_input_1'>Так</label></p>
+                    <p><input type="radio" name="page_9" id='page_9_input_2' onchange="ActivateButton('page_9_submit_button');ChangeAnswer('page_9_1', false)"><label for='page_9_input_2'>Ні</label></p></div>
+                    <p style="align-self: center;"><label class="button disabled" id="page_9_submit_button" onclick="if (this.className != 'button disabled'){ChangePage('page_9_1')}">Далі</label></p>
+                </div>
+                <div class="page addictive" id="page_9_1">
+                    <div style="display: flex;flex-direction: column;">
+                        <p id="page_9_1_answer"></p>
+                        <p>Як колір волосся, так і кучерявість вважаються практично повністю визначеними генетично - внесок ДНК в розвиток цих ознак досягає 97 відсотків.</p>
+                    </div>
+                    <p style="align-self: center;"><label class="button" id="page_9_1_submit_button" onclick="ChangePage('page_10');Calculate();setTimeout(PageCounterUpdate, 250)">Далі</label></p>
+                </div>
+                <!--PAGE_9-->
+
+                <!--PAGE_10-->
+                <div class="page" id="page_10" style="justify-content: center;align-items: center;">
+                    <div>
+                        <p id="test_result" style="color:var(--correct-answer);"></p>
+                    </div>
+                </div>
+                <!--PAGE_10-->
             </div>
-            <div id='page-counter'>
-                <div class='selected' id="page-counter-element-1"></div>
+            
+            <div id='page-counter' style="transform: rotateY(180deg);">
+                <div class="selected" style="display:none" id="page-counter-element-0"></div>
+                <div id="page-counter-element-1"></div>
                 <div id="page-counter-element-2"></div>
                 <div id="page-counter-element-3"></div>
                 <div id="page-counter-element-4"></div>
+                <div id="page-counter-element-5"></div>
+                <div id="page-counter-element-6"></div>
+                <div id="page-counter-element-7"></div>
+                <div id="page-counter-element-8"></div>
+                <div id="page-counter-element-9"></div>
+                <div id="page-counter-element-10"></div>
             </div>
     </body>
 </html>

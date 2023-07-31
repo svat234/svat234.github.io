@@ -1,0 +1,489 @@
+<div class="testt">
+    <label class="gray before"></label>
+
+</div>
+<script>
+    let questions = ["1. Я почуваю себе емоційно виснаженим/ою", "2. Після роботи я відчуваю себе як вичавлений лимон.", "3. Зранку я відчуваю втому і небажання йти на роботу.", "4. Я добре розумію, що відчувають мої пацієнти й колеги, і стараюся враховувати це в інтересах справи.", "5. Я відчуваю, що спілкуюся з деякими пацієнтами й колегами як з предметами (без тепла і симпатії до них).", "6. Після роботи хочеться на деякий час усамітнитися від усіх і всього.", "7. Я вмію знаходити правильне рішення в конфліктних ситуаціях, що виникають у розмові з друзями.", "8. Я відчуваю пригніченість і апатію.", "9. Я впевнений/а, що моя робота потрібна людям.", "10. Останнім часом я став/ла більш черствим/ою до тих, з ким працюю.", "11. Я помічаю, що моя робота дратує мене.", "12. У мене багато планів на майбутнє і я вірю у їх здійснення.", "13. Моя робота все більше мене розчаровує.", "14. Я думаю, що дуже багато працюю.", "15. Буває, що дійсно мені байдуже те, що відбувається з ким-небудь із моїх колег і друзів.", "16. Мені хочеться усамітнитися і відпочити від усього.", "17. Я легко можу створити атмосферу доброзичливості та співпраці в колективі.", "18. Під час роботи я відчуваю приємне задоволення.", "19. Завдяки своїй роботі я вже зробив/ла у житті багато дійсно цінного.", "20. Я відчуваю байдужість і втрату цікавості до всього, що задовольняло б мене в моїй роботі.", "21. На роботі спокійно справляюсь з емоційними проблемами.", "22. Останнім часом я бачу, що друзі і колеги все частіше перекладають на мене тягар своїх проблем та обов’язків."];
+    var PERBLOCK = 0;
+    const results = {
+        emo: [
+            [
+                [0, 15], `низького рівня (0-15 балів).<br>
+                Це гарний показник! Ви добре справляєтеся з власним емоційним та фізичним станом.`
+            ],
+            [
+                [16, 24], `середнього рівня (16-24 балів).<br>
+                Ви можете мати проблеми зі сном, спостерігати за собою втому від самої думки про роботу, але ще знаходите ресурси для подолання таких проблем. Будь ласка, зверніть увагу на баланс «робота-відпочинок». Саме час спробувати методики профілактики вигорання, запропоновані на вебінарі 😊.`
+            ],
+            [
+                [25, 54], `високого рівня (25-54 балів).<br>
+                У Вас виснаження, що може проявлятися в хронічній емоційній і фізичній утомі, в байдужості та холодності до оточуючих. Можуть бути присутні ознаки депресії та роздратування. Будь ласка, зверніть увагу на відпочинок, фізичні вправи та медитацію, на речі та дії, які раніше приносили радість. Говоріть 😉 та починайте виконувати вправу «три хороші речі» вже сьогодні.`
+            ]
+        ],
+        dep: [
+            [
+                [0, 5], `низького рівня (0-5 балів).<br>
+                Ви можете співпереживати колегам та пацієнтам. Ви здатні емоційно підтримати та проявити емпатію. Підтримуйте свою здатність відчувати, беріть участь у заходах з профілактики вигорання.`
+            ],
+            [
+                [6, 10], `середнього рівня (6-10 балів).<br>
+                Ви можете спостерігати за собою нездатність або небажання співпереживати. У Вас з’являється бажання уникати колег та/або пацієнтів, розмови з ними втомлюють і дратують. Іноді виникає почуття провини і Ви ще більше хочете закритися від усіх. Час згадати заходи з профілактики вигорання і спробувати їх 😊.`
+            ],
+            [
+                [11, 30], `високого рівня (11-30 балів).<br>
+                Ви можете спостерігати за собою віддалення від друзів, колег, пацієнтів, небажання спілкуватися. Часто відчуваєте роздратованість і нетерпимість до оточуючих людей. Все частіше Вам байдуже, що відбувається навколо, що говорять Ваші колеги та пацієнти. Поступово втрачається здатність співпереживати, все частішими стають прояви цинізму та негативу. Будь ласка, зверніть увагу на відпочинок, фізичні вправи та медитацію, на іншу діяльність, яка могла б поновити Ваші емоційні та фізичні сили. Ви потрібні собі і оточуючим 😊.`
+            ]
+        ],
+        red: [
+            [
+                [37, 48], `низького рівня (37-48 балів).<br>
+                Гарний показник! Зазвичай Ви позитивно оцінюєте себе. Ви відчуваєте свою ефективність і цінність своєї роботи. Щиро радіємо за Вас, так тримати!`
+            ],
+            [
+                [31, 36], `середнього рівня (31-36 балів).<br>
+                Ви можете спостерігати, що все менше отримуєте задоволення від роботи, втрачаєте цікавість. Іноді з’являються сумніви в собі і своїх силах, і Ви відчуваєте, що не можете впоратися із ситуацією. Але це тільки Ваші думки і відчуття щодо себе, насправді Ви – фаховий спеціаліст та працелюбний уважний колега 😉. Не нехтуйте заходами з профілактики вигорання.`
+            ],
+            [
+                [0, 30], `високого рівня (0-30 балів).<br>
+                Ви можете відчувати незадоволеність собою як професіоналом, Ви все частіше сумніваєтеся в своїй компетентності та своїх справжніх здібностях. Ви можете часто оцінювати себе негативно і потім відчувати себе неуспішною людиною. Будь ласка, зверніться за допомогою до колег, до тих, кому довіряєте, обговоріть свої сумніви та почуття. Зверніть увагу на заходи з профілактики вигорання, запропоновані у вебінраі. Візьміть участь в Балінтовій групі або у групі рівних, якщо такі проводяться у Вашому закладі. Бережіть себе.`
+            ]
+        ]
+    }
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        PERBLOCK = 1;
+    } else {
+        PERBLOCK = 11;
+    }
+    var arr = new Array(PERBLOCK);
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = false;
+    }
+    generate();
+
+    function generate() {
+        let testt = document.getElementsByClassName("testt")[0];
+        let block = document.createElement("div");
+        block.id = "block0";
+        block.className = "block";
+        block.innerHTML = `<div style="display:flex;width:100%;justify-content:center;"><label class="bold gray">Діагностика професійного вигорання</label></div><div style="display:flex;width:100%;justify-content:center;"><label class="gray bold">(К. Маслач, С. Джексон в адаптації Н. Водоп’янової)</label></div>
+        <label class="gray" style="margin-top:15px;">Вітаємо!<br></label>
+        <label class="gray" style="margin-top:5px;line-height:1.3;">Пропонуємо Вам пройти невеликий тест на діагностику професійного вигорання. Вам будуть запропоновані 22 твердження. Дайте відповідь, як часто у Вас виникають почуття, перелічені в тесті. Для цього оберіть для кожного твердження один із варіантів відповідей: “ніколи”, “дуже рідко”, “рідко”, “іноді”, “часто”, “дуже часто”, “щодня”.<br></label>
+        <label class="gray" style="margin-top:5px;line-height:1.3;">В кінці тесту Ви отримаєте опис результатів відповідно до набраних балів.
+        </label><br>
+        <div class="submit" id="submit0"><button class="submit_button" onclick="Continue(this)">Продовжити</button><div>`;
+        testt.append(block);
+        for (let i = 0; i < Math.ceil(questions.length / PERBLOCK); i++) {
+            block = document.createElement("div");
+            block.id = "block" + String(i + 1);
+            block.className = "block";
+            block.style = "display: none";
+            testt.append(block);
+            let limit = PERBLOCK;
+            if (i == Math.ceil(questions.length / PERBLOCK) - 1 && questions.length % PERBLOCK != 0) {
+                limit = questions.length % PERBLOCK;
+            }
+            for (let j = 0; j < limit; j++) {
+                let answer = document.createElement("div");
+                answer.className = "answer";
+                block.append(answer);
+                let label = document.createElement("label");
+                label.className = "gray";
+                label.innerHTML = questions[i * PERBLOCK + j];
+                answer.append(label);
+                let answers = document.createElement("div");
+                answers.id = "answer" + String(j + 1);
+                answers.className = "answers";
+                answers.innerHTML = `<button class="answer_button b0" onclick="Change(this)">Ніколи</button>
+            <button class="answer_button b1" onclick="Change(this)">Дуже рідко</button>
+            <button class="answer_button b2" onclick="Change(this)">Рідко</button>
+            <button class="answer_button b3" onclick="Change(this)">Іноді</button>
+            <button class="answer_button b4" onclick="Change(this)">Часто</button>
+            <button class="answer_button b5" onclick="Change(this)">Дуже часто</button>
+            <button class="answer_button b6" onclick="Change(this)">Щодня</button>`;
+                answer.append(answers);
+            }
+            submit = document.createElement("div");
+            submit.className = "submit";
+            submit.id = "submit" + String(i + 1);
+            submit.innerHTML = '<button class="submit_button" disabled="disabled" onclick="Continue(this)">Продовжити</button>';
+            block.append(submit);
+        }
+        block = document.createElement("div");
+        block.id = "block" + String(Math.ceil(questions.length / PERBLOCK) + 1);
+        block.className = "block";
+        block.style = "display: none";
+        block.innerHTML = `<label class="gray" style="line-height:1.3;"><div class="bold orange">Дякуємо за проходження тесту!</div><br>Аналіз набраних Вами балів розподілено за трьома компонентами, описаними нижче.</label><br>
+    <label class="gray" style="line-height:1.3;"><b>Емоційне виснаження</b> (процес вичерпання емоційних, фізичних, енергетичних ресурсів професіонала, який працює з людьми)</label><br><label id="emo" class="gray" style="line-height:1.3;"></label><br>
+    <label class="gray" style="line-height:1.3;"><b>Деперсоналізація</b> (специфічна форма соціальної дезадаптації професіонала, який працює з людьми)</label><br><label id="dep" class="gray" style="line-height:1.3;"></label><br>
+    <label class="gray" style="line-height:1.3;"><b>Низьке почуття професійної ефективності</b> (приниження власних особистих досягнень)</label><br><label id="red" class="gray" style="line-height:1.3;"></label><br>
+    <div style="display:flex;width:100%;justify-content:center;padding-top:5px;"><label class="orange bold" style="line-height:1.3;text-align:center;">Ми цінуємо Вас і Вашу працю!<br>Бережіть себе, своїх рідних і будьте здорові!</label></div>`;
+        testt.append(block);
+    }
+
+    function Change(button) {
+        let block = button.parentElement;
+        let button1 = block.getElementsByClassName("active")[0]
+        if (button1 != undefined) {
+            button1.classList.remove("active");
+        }
+        button.classList.add("active")
+        arr[Number(block.id.slice(6)) - 1] = true;
+        let j = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] == true) {
+                j++
+            }
+        }
+        if (j == arr.length) {
+            block.parentElement.parentElement.getElementsByClassName("submit_button")[0].disabled = "";
+        }
+    }
+
+    function Continue(button) {
+        window.scrollTo(0, 0)
+        let id = button.parentElement.id.slice(6)
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && (id != 22)) {
+            document.getElementsByClassName("before")[0].innerHTML = "Тест з діагностики професійного вигорання<br><br>" + String(Number(id) + 1) + "/22<br><bar>" + String('<barelement style="width:' + (100 / 22) * (Number(id) + 1) + '%;"></barelement>') + "</bar>"
+        } else if (id != 2 && id != 22) {
+            document.getElementsByClassName("before")[0].innerHTML = 'Тест з діагностики професійного вигорання<br><br><label class="orange">' + String(id * 11 + 1) + "-" + String(id * 11 + 11) + ' з 22</label>'
+        } else {
+            document.getElementsByClassName("before")[0].innerHTML = "Тест з діагностики професійного вигорання"
+        }
+        if (id == Math.ceil(questions.length / PERBLOCK)) {
+            Calculate();
+        }
+        document.getElementById("block" + id).style.display = "none";
+        document.getElementById("block" + String(Number(id) + 1)).style.display = "block";
+        arr = new Array(document.getElementById("block" + String(Number(id) + 1)).childElementCount - 1)
+        for (let i = 0; i < arr.length; i++) {
+            arr[i] = false;
+        }
+    }
+
+    function Previous(button) {
+        window.scrollTo(0, 0)
+        let id = button.parentElement.id.slice(6)
+        document.getElementById("block" + id).style.display = "none";
+        document.getElementById("block" + String(Number(id) - 1)).style.display = "block";
+    }
+
+    function includeCSS() {
+        let head = document.getElementsByTagName("head")[0];
+        let style = document.createElement('style')
+        style.innerHTML = `.orange{
+    color: #FA6332;
+}
+.blue{
+    color: #002060;
+}
+.gray{
+		color: #8c8983;
+}
+.blocknum{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.blocknum label{
+    background-color: rgb(217, 217, 217);
+    border-radius: 25px;
+    text-align: center;
+    width: 269px;
+    padding: 10px;
+}
+.resultt{
+    border-bottom: 1px solid black;
+    width: 100%;
+    }
+    .name{
+    width: 100%;
+    }
+    .name .p{
+    margin-bottom: 0px;
+    margin-top: 5px;
+    padding: 0px;
+    }
+    .testt {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-top: 5px;
+    font-family: "Arial";
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #000000;
+    font-size: 18px;
+    }
+    .testt button{
+        font-family: "Arial";
+				outline:none;
+    }
+    #imgresult2, #imgresult2, #imgresult3, #imgresult4, #imgresult5, #imgresult6, #imgresult7, #imgresult8{
+    width: 39px;
+    height: 39px;
+    margin-left: 10px;
+    justify-self: flex-start;
+    }
+    #presult1, #presult2{
+    margin-left: 0px;
+    }
+    .table {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    }
+    .start{
+    width: 100%;
+    height: 66.7%;
+    }
+    .icon{
+    grid-area: 1/3/4/4;
+    }
+    .a {
+    margin-top: 5px;
+    text-decoration: none;
+    color: #002f6c;
+    font-style: italic;
+    }
+    .p {
+    font-weight: 400;
+    padding-bottom: 1mm;
+    padding-bottom: 0.5mm;
+    text-align: justify;
+    margin: 0px;
+    }
+    .bold {
+    font-weight: 900;
+    }
+    .italic {
+    font-style: italic;
+    border-bottom: 0px solid black;
+    }
+    label {
+    margin: 0px;
+    padding: 0px;
+    padding-top: 1mm;
+    padding-bottom: 0.5mm;
+    font-weight: 420;
+    text-align: justify;
+    line-height: 1;
+    }
+    .block {
+    border: 1.5px solid #FA6332;
+    border-radius: 25px;
+    width: 100%;
+    max-width: 830px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    }
+    @media only screen and (min-device-width: 481px){
+    .before{
+        font-size: 18px;
+    }
+    .answer_button{
+        position: relative;
+        width: auto;/*42*/
+        height: 42px;
+        font-size: 18px;
+        outline: none;
+        border-radius: 100px;
+        padding: 0px;
+        margin: 0px;
+        padding-left: 9px;
+        padding-right: 9px;
+        border-width: 0px;
+        background-color: #8c8983;
+        color: #ffffff;
+    }
+    .submit{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;   
+    }
+    .answers {
+    height: 48px;
+    align-items: center;
+    width: 100%;
+    margin: 2px;
+    display: flex;
+    justify-content: space-evenly;
+    }
+    }
+    @media only screen and (max-device-width: 480px){
+    .before{
+        font-size: 15px;
+    }
+    .answer_button{
+        position: relative;
+        width: auto;/*24*/
+        height: 24px;
+        font-size: 15px;
+        outline: none;
+        border-radius: 100px;
+        padding: 0px;
+        margin: 0px;
+        padding-left: 7.5px;
+        padding-right: 7.5px;
+        border-width: 0px;
+        background-color: #8c8983;
+        color: #ffffff;
+    }
+    .submit{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;   
+    }
+    .answers {
+    height: 200px;
+    align-items: flex-start;
+    width: 100%;
+    margin: 2px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    }
+    }
+    .answer_button:hover{
+    background-color: #002f6c;
+    }
+    .answer{
+    margin-bottom: 20px;
+    width: 100%
+    }
+		@media only screen and (min-device-width: 481px){
+    .answer_button.active{
+        background-color: #002f6c;
+        width: auto;
+        transform: scale(1.25, 1.25);
+				font-size: 16px;
+    }
+		}
+		@media only screen and (max-device-width: 480px){
+    .answer_button.active{
+        background-color: #002f6c;
+        width: auto;
+        transform: scale(1.25, 1.25);
+				font-size: 13.5px;
+    }
+		}
+    .submit_button{
+    padding: 10px;
+    margin: 5px;
+    outline: none;
+    border-radius: 100px;
+    border: 1px solid #002f6c;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: #002f6c;
+    width: 25%;
+    min-width: 140px;
+    }
+    .submit_button:disabled{
+    color: #002f6c;
+    background-color: #ffffff;
+    }
+    .previous_button{
+    padding: 10px;
+    margin: 5px;
+    outline: none;
+    border-radius: 100px;
+    border: 1px solid #FA6332;
+    color: #FA6332;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: #ffffff;
+    width: 25%;
+    min-width: 140px;
+    }
+.previous_button:hover{
+    color: #ffffff;
+    background-color: #FA6332;
+    border-color: #FA6332;
+}
+    .block_result_label{
+        width: 100%;
+        font-size: 20px;
+        color: #8c8983;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .blockname{
+    color: #FA6332;
+    width: 100%;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 10px;
+    }
+.answer label{
+    font-size: 22px;
+}
+.before{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+bar{
+    background-color: #8c8983;
+    border: black solid 1px;
+    width: 100%;
+    height: 10px;
+    display: flex;
+    justify-content: right;
+}
+barelement{
+    background-color: #FA6332;
+}
+.testt b{
+		font-weight:800;
+}`
+        head.append(style)
+        let transform = document.createElement("style")
+        transform.innerHTML = `.previous_button, .submit_button{
+        transition: 0.5s all;
+    }`
+        head.append(transform)
+    }
+    includeCSS();
+
+    function Calculate() {
+        let answerList = {
+            emo: [1, 2, 3, 6, 8, 13, 14, 16, 20],
+            dep: [5, 10, 11, 15, 22],
+            red: [4, 7, 9, 12, 17, 18, 19, 21]
+        }
+        let answers = [0, 0, 0];
+        let testt = document.getElementsByClassName("testt")[0]
+        let elements = testt.getElementsByClassName("active");
+        for (let i = 0; i < answerList.emo.length; i++) {
+            answers[0] += Number(elements[answerList.emo[i] - 1].classList[1].slice(1));
+        }
+        for (let i = 0; i < answerList.dep.length; i++) {
+            answers[1] += Number(elements[answerList.dep[i] - 1].classList[1].slice(1));
+        }
+        for (let i = 0; i < answerList.red.length; i++) {
+            answers[2] += Number(elements[answerList.red[i] - 1].classList[1].slice(1));
+        }
+        document.getElementById("emo").innerHTML += "Ваш бал - " + answers[0] + ", і він знаходиться в межах " + String(IfRanges(results.emo, answers[0]));
+        document.getElementById("dep").innerHTML += "Ваш бал - " + answers[1] + ", і він знаходиться в межах " + String(IfRanges(results.dep, answers[1]));
+        document.getElementById("red").innerHTML += "Ваш бал - " + answers[2] + ", і він знаходиться в межах " + String(IfRanges(results.red, answers[2]));
+    }
+
+    function IfRanges(ranges, numb) {
+        for (let i = 0; i < ranges.length; i++) {
+            if (numb >= ranges[i][0][0] && numb <= ranges[i][0][1]) {
+                return ranges[i][1];
+            }
+        }
+    }
+</script>
